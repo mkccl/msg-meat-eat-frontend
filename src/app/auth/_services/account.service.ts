@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 
 import { environment } from '../../../environments/environment';
 import { User } from '../_models';
+import {Background} from "@app/utils/background";
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
@@ -27,6 +28,7 @@ export class AccountService {
     login(email, password) {
         return this.http.post<User>(`${environment.apiUrl}/auth/user/authenticate`, { email, password })
             .pipe(map(user => {
+                console.log(user);
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('user', JSON.stringify(user));
                 this.userSubject.next(user);
@@ -57,7 +59,7 @@ export class AccountService {
         return this.http.put(`${environment.apiUrl}/users/${id}`, params)
             .pipe(map(x => {
                 // update stored user if the logged in user updated their own record
-                if (id == this.userValue.id) {
+                if (id == this.userValue.userId) {
                     // update local storage
                     const user = { ...this.userValue, ...params };
                     localStorage.setItem('user', JSON.stringify(user));
@@ -73,11 +75,15 @@ export class AccountService {
         return this.http.delete(`${environment.apiUrl}/users/${id}`)
             .pipe(map(x => {
                 // auto logout if the logged in user deleted their own record
-                if (id == this.userValue.id) {
+                if (id == this.userValue.userId) {
                     this.logout();
                 }
                 return x;
             }));
+    }
+
+    getUserBackgroundImage(userId: string) {
+        return this.http.get(`${environment.apiUrl}/storage/${userId}/dashboard/image`);
     }
 
     public getServerErrorMessage(error: HttpErrorResponse) {

@@ -8,7 +8,7 @@ import { JwtInterceptor, ErrorInterceptor } from './auth/_helpers';
 import { AppComponent } from './app.component';
 import { AlertComponent } from './auth/_components';
 import { HomeComponent } from './home';
-import { ProfileComponent } from './dashboard/profile/profile.component';;
+import { ProfileComponent } from './dashboard/profile/profile.component';
 
 
 @NgModule({

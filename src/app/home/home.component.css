@@ -1,34 +1,92 @@
-.icon {
-    align-content: end;
+body {
+    background-repeat: no-repeat;
+    background-size: 2046px;
+
+    /* Set rules to fill background */
+    min-height: 100%;
+    min-width: 1024px;
+
+    /* Set up proportionate scaling */
+    width: 100%;
+    height: auto;
+
+    /* Set up positioning */
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 
-.card-weather {
-    background-image: url("https://i.imgur.com/dpqZJV5.jpg");
-    background-size: cover;
-    width: 600px;
-    height: 350px;
-    border-radius: 20px;
-    box-shadow: 0px 8px 16px 4px #9E9E9E;
-    margin-top: 50px;
-    margin-bottom: 50px;
+.btn-outline-light-transparent {
+    background-color: rgba(211,211,211,0.3);
+    color: rgba(255,255,255,0.8);
+}
+
+.vertical-align-middle {
+    margin-left: 2px;
+    vertical-align: middle;
+}
+
+.padding-bottom-3 {
+    padding-bottom: 3px;
+}
+
+.left-nav {
+    height: 1080px;
+    background-color: rgba(83, 82, 90,0.5);
+    backdrop-filter: blur(3px);
+}
+
+.btn-left-nav {
+    margin-right: 5px;
+    text-align: start;
+    margin-top: 20px;
+    width: auto;
+
+}
+
+.btn-transparent {
+    border: none;
     color: white;
 }
 
-.time-font {
-    text-align: center;
-    font-size: 50px
+.btn-transparent:active {
+    color: white;
+    border: none;
 }
 
-.sm-font {
-    font-size: 18px
+.btn-transparent:hover {
+    color: white;
+    border: none;
 }
 
-.med-font {
-    text-align: right;
-    font-size: 28px
+.icon-projekte {
+    color: white;
+    margin-top: 55px;
+    align-content: start;
+    margin-left: 20px;
 }
 
-.large-font {
-    text-align: right;
-    font-size: 60px
+.left-dropdown {
+    margin-top: 50px;
+}
+
+.project {
+    margin-top: 10px;
+}
+
+.project-name {
+    color: white;
+    margin-left: 10px;
+}
+
+.project-logo-small {
+    margin-top: 2px;
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+
+}
+
+.left-project {
+    margin-top: 20px;
 }
