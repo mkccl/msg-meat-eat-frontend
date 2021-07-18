@@ -8,7 +8,8 @@ import { JwtInterceptor, ErrorInterceptor } from './auth/_helpers';
 import { AppComponent } from './app.component';
 import { AlertComponent } from './auth/_components';
 import { HomeComponent } from './home';
-import { ProfileComponent } from './dashboard/profile/profile.component';
+import { ProfileComponent } from './dashboard/profile/profile.component';;
+import { TaskComponent } from './dashboard/task/task.component'
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { ProfileComponent } from './dashboard/profile/profile.component';
         AlertComponent,
         HomeComponent,
         ProfileComponent ,
+        TaskComponent,
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

@@ -9,16 +9,21 @@
                 <button class="btn btn-outline-light-transparent rounded-start rounded-end btn-left-nav"><i class="material-icons vertical-align-middle padding-bottom-3">dashboard</i> Dashboard</button>
                 <div class="row">
                     <div class="col-8">
-                        <div class="dropdown left-dropdown">
-                            <button class="btn btn-transparent dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Projekte
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </div>
+                        <ul class="nav navbar-nav navbar-right">
+
+                            <li class="dropdown left-dropdown">
+                                <button class="btn btn-transparent dropdown-toggle" href="#" id="projectDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Projekte
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="projectDropdown">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" (click)="logout()" href="#">Logout</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
                         <div class="div">
                             <div class="div left-project">
                                 <img [src]="getProjectLogoSmall()" class="rounded-circle project project-logo-small" alt="" ><span class="project project-name">TeamStrength</span>
@@ -36,7 +41,7 @@
 
                     </div>
                     <div class="col-4">
-                        <span class="material-icons vertical-align-middle padding-bottom-3 icon-projekte" (click)="openModal()">add_circle_outline</span>
+                        <button class="btn add-project material-icons vertical-align-middle padding-bottom-3 icon-projekte" data-bs-toggle="modal" data-bs-target="#exampleModal">add_circle_outline</button>
                     </div>
                 </div>
 
@@ -79,4 +84,41 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <form [formGroup]="form" (ngSubmit)="onNewProject()">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Projekt erstellen</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="onCancel()" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                            <div class="form-group">
+                                <label for="projectName">Projekt Name</label>
+                                <input type="text" formControlName="projectName" id="projectName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.projectName.errors }" />
+                                <div *ngIf="submitted && f.projectName.errors" class="invalid-feedback">
+                                    <div *ngIf="f.email.errors.required">Ein Projekt Name wird erwartet.</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="projectDescription">Projekt Beschreibung</label>
+                                <input type="text" id="projectDescription" formControlName="projectDescription" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.projectDescription.errors }" />
+                                <div *ngIf="submitted && f.projectDescription.errors" class="invalid-feedback">
+                                    <div *ngIf="f.projectDescription.errors.required">Eine Beschreibung wird erwartet</div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button [disabled]="loading" class="btn btn-primary" >
+                            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                            Projekt anlegen
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
 </body>
